@@ -1,180 +1,262 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alexander Angerer – Portfolio</title>
-<style>
-  :root {
-    --bg-color: #111;
-    --text-color: #f5f5f5;
-    --accent-color: #666;
-    --link-hover: #ccc;
-  }
-  body.light {
-    --bg-color: #f8f9fa;
-    --text-color: #111;
-    --accent-color: #888;
-    --link-hover: #444;
-  }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-    background-color: var(--bg-color);
-    border-right: 1px solid var(--accent-color);
-  }
-  nav a {
-    display: block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    margin: 12px 0;
-    text-indent: -9999px;
-  }
-  nav a:hover {
-    background-color: var(--link-hover);
-  }
-  main {
-    margin-left: 80px;
-    padding: 40px;
-    max-width: 900px;
-  }
-  section {
-    padding: 60px 0;
-    border-bottom: 1px solid var(--accent-color);
-  }
-  section:last-child {
-    border-bottom: none;
-  }
-  h1, h2, h3 {
-    margin-top: 0;
-  }
-  .toggle-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: var(--accent-color);
-    border: none;
-    color: var(--bg-color);
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexander Angerer – Portfolio</title>
+  <style>
+    /*
+      Minimalistisches Portfolio-Layout
+      
+      Dieses Stylesheet nutzt CSS-Variablen, um zwischen
+      hellem und dunklem Theme umzuschalten. Es definiert
+      ein flexibles Grid-Layout für die Inhalte, setzt
+      klare Typografie und milde Farbakzente, sodass die
+      Seite sowohl auf dem Desktop als auch auf mobilen
+      Geräten funktioniert. Ein Button oben rechts
+      ermöglicht das Umschalten zwischen Light- und
+      Dark-Mode. Die Komponenten sind bewusst einfach
+      gehalten, damit sie sich leicht erweitern lassen.
+    */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --accent-color: #005f73;
+      --muted-color: #5f5f5f;
+      --section-bg: #f7f7f7;
+    }
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --accent-color: #89c2d9;
+      --muted-color: #b0b0b0;
+      --section-bg: #1e1e1e;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      background-color: var(--bg-color);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 100;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: var(--accent-color);
+    }
+    .toggle {
+      background: none;
+      border: 2px solid var(--accent-color);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      color: var(--accent-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    section {
+      padding: 3rem 2rem;
+    }
+    #hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 4rem;
+    }
+    #hero img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+    .card {
+      background-color: var(--section-bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: var(--accent-color);
+    }
+    .card p {
+      margin: 0.2rem 0;
+    }
+    ul {
+      padding-left: 1.1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.8rem;
+      color: var(--muted-color);
+    }
+    @media (max-width: 600px) {
+      nav a {
+        margin: 0 0.5rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
-<body class="dark">
-<nav>
-  <a href="#home">Home</a>
-  <a href="#projects">Projekte</a>
-  <a href="#experience">Erfahrung</a>
-  <a href="#education">Ausbildung</a>
-  <a href="#skills">Kenntnisse</a>
-  <a href="#interests">Interessen</a>
-  <a href="#about">Über</a>
-  <a href="#contact">Kontakt</a>
-</nav>
-<button class="toggle-btn" onclick="toggleTheme()">Light/Dark</button>
-<main>
-<section id="home" style="display:flex;flex-wrap:wrap;align-items:center;gap:20px;">
-  <img src="profile.jpg" alt="Alexander Angerer" style="width:180px;height:180px;object-fit:cover;border-radius:50%;border:2px solid var(--accent-color);">
-  <div>
-    <h1>Alexander Angerer</h1>
-    <p>22‑jähriger Masterstudent im Studiengang Computer Engineering an der TU Wien. Begeistert von Technik, Kommunikation und datengetriebener Problemlösung.</p>
-  </div>
-</section>
-<section id="projects">
-  <h2>Projekte</h2>
-  <article>
-    <h3>Dekantiermaschine (Abschlussarbeit)</h3>
-    <p>Als Abschlussprojekt an der HTL Bregenz entwickelte ich mit meinem Team eine <strong>Dekantiermaschine</strong> für Magnumflaschen. Wir legten großen Wert auf eine professionelle Arbeitsplanung und Aufgabenteilung, ein schlichtes, edles Design und eine einfache Handhabung. Das Projekt ermöglichte uns, wertvolle Erfahrungen zu sammeln und zeigte, wie wichtig klare Kommunikation im Team ist.</p>
-  </article>
-  <article>
-    <h3>Tutoring &amp; Mentoring</h3>
-    <p>Ich biete Nachhilfe in Englisch, Mathematik und Physik. Meine Unterrichtsphilosophie basiert auf Verständnis, Geduld und dem Aufbau einer vertrauensvollen Beziehung. Ziel ist es, komplexe Inhalte klar und zugänglich zu vermitteln und lebensnahe Fähigkeiten zu fördern.</p>
-  </article>
-  <article>
-    <h3>Kommunikation &amp; Teamarbeit</h3>
-    <p>In internationalen Teams aus Ingenieur:innen und Physiker:innen habe ich gelernt, komplexe Konzepte strukturiert zu vermitteln. Als Problemlöser gehe ich Herausforderungen systematisch an, um die Ursachen von Schwierigkeiten aufzuspüren und nachhaltige Lösungen zu entwickeln.</p>
-  </article>
-</section>
+<body>
+  <header>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">Über mich</a>
+      <a href="#experience">Erfahrung</a>
+      <a href="#education">Ausbildung</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+    <button class="toggle" id="theme-toggle">Dark Mode</button>
+  </header>
 
-<!-- Erfahrung -->
-<section id="experience">
-  <h2>Erfahrung</h2>
-  <article>
-    <h3>Werkstudent – Siemens Healthineers AG</h3>
-    <p><strong>11/2023 – 04/2024:</strong> Entwicklung von Tooling für agiles Softwareprojektmanagement im Bereich Forschung & Entwicklung. Schwerpunkte lagen auf der Programmierung mit MS Excel VBA und der Integration in MS Azure DevOps.</p>
-  </article>
-  <article>
-    <h3>Dualer Student – Brose Fahrzeugteile (Bamberg)</h3>
-    <p><strong>10/2020 – 09/2023:</strong> Mitarbeit in der Software‑ und Hardware‑Entwicklung. Überführung von Softwaretests in Python, Schreiben von Unit‑Tests mit Pytest sowie Evaluierung von Galliumnitrid HEMTs als innovative Alternative zu Silizium‑MOSFETs mittels Doppelpulstests.</p>
-  </article>
-</section>
+  <main class="container">
+    <section id="hero">
+      <img src="profile.jpg" alt="Profilfoto von Alexander Angerer">
+      <h1>Alexander Angerer</h1>
+      <p>Masterstudent im Studiengang Computer Engineering an der TU Wien. Leidenschaft für Kommunikation, Technik und datengetriebene Lösungen.</p>
+    </section>
 
-<!-- Ausbildung -->
-<section id="education">
-  <h2>Ausbildung</h2>
-  <article>
-    <h3>Master Computer Engineering – Technische Universität Wien</h3>
-    <p><strong>04/2024 – 03/2026:</strong> Vertiefungen in Cyber‑Physical Systems, Dependable Distributed Systems und Digital Circuits and Systems.</p>
-  </article>
-  <article>
-    <h3>Akademiestudium – Fernuniversität Hagen</h3>
-    <p><strong>10/2023 – 03/2024</strong></p>
-  </article>
-  <article>
-    <h3>Bachelor Elektrotechnik – Duale Hochschule Baden‑Württemberg (Campus Friedrichshafen)</h3>
-    <p><strong>10/2020 – 09/2023:</strong> Studienrichtung Fahrzeugelektronik. Bachelorarbeit: Evaluierung von Galliumnitrid High‑Electron‑Mobility‑Transistoren im praktischen Vergleich zu Silizium‑MOSFETs.</p>
-  </article>
-  <article>
-    <h3>HTL Bregenz</h3>
-    <p>Abschlussprojekt: Entwicklung einer Dekantiermaschine für Magnumflaschen mit Fokus auf professionelle Arbeitsplanung und elegantes Design.</p>
-  </article>
-</section>
+    <section id="about">
+      <h2 class="section-title">Über mich</h2>
+      <div class="card">
+        <p>Ich bin 22 Jahre alt, stamme aus Deutschland und studiere derzeit im Masterstudiengang <strong>Computer Engineering</strong> an der TU Wien. Zuvor absolvierte ich einen dualen Bachelor in Elektrotechnik und besitze ein bayerisches Abitur mit den Fächern Englisch, Physik und Mathematik【598814382697796†L78-L100】. Meine Arbeit in internationalen Teams hat mir gezeigt, wie wichtig klare Kommunikation, Geduld und ein strukturiertes Vorgehen sind【598814382697796†L90-L103】. Neben dem Studium interessiere ich mich für künstliche Intelligenz, Mikrocontroller-Projekte, Kraftsport, Schwimmen, Klavier und Unternehmertum【598814382697796†L101-L104】.</p>
+      </div>
+    </section>
 
-<!-- Kenntnisse -->
-<section id="skills">
-  <h2>Kenntnisse</h2>
-  <p><strong>Sprachen:</strong> Deutsch (Muttersprache), Englisch (verhandlungssicher), Französisch (Grundkenntnisse)</p>
-  <p><strong>Software &amp; Tools:</strong> MS Office, MS Excel VBA, MS Azure DevOps, C/C++, Python</p>
-  <p><strong>Betriebssysteme:</strong> Windows, macOS, Linux</p>
-</section>
+    <section id="experience">
+      <h2 class="section-title">Berufserfahrung</h2>
+      <div class="card">
+        <h3>Siemens Healthineers – Werkstudent</h3>
+        <p><em>Nov 2023 – Apr 2024</em></p>
+        <ul>
+          <li>Tooling für agiles Projektmanagement mit Excel‑VBA und Azure DevOps【865919582620593†L0-L17】.</li>
+          <li>Unterstützung des R&D‑Teams bei datengetriebenen Prozessen und Reporting.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Brose Fahrzeugteile – Dualer Student</h3>
+        <p><em>Okt 2020 – Sep 2023</em></p>
+        <ul>
+          <li>Software‑ und Hardware‑Entwicklung für die Elektronikfertigung, inklusive Python‑Tests【865919582620593†L0-L17】.</li>
+          <li>Evaluierung von GaN‑HEMTs und Entwicklung von Testständen für Labor und Prüffeld【865919582620593†L0-L17】.</li>
+        </ul>
+      </div>
+    </section>
 
-<!-- Interessen -->
-<section id="interests">
-  <h2>Interessen</h2>
-  <p>Künstliche Intelligenz, Microcontroller‑Projekte (Raspberry Pi, STM32, ESP32), Kraftsport, Schwimmen, Klavierspielen, Unternehmerschaft.</p>
-</section>
-<section id="about">
-  <h2>Über mich</h2>
-  <p>Als datengetriebener Problemlöser lege ich Wert auf klare Kommunikation, Teamarbeit und kontinuierliche Weiterentwicklung. Die Verbindung von Elektrotechnik und Informatik ermöglicht es mir, komplexe technische Themen verständlich aufzubereiten und in praktischen Projekten umzusetzen. In meiner Freizeit fördere ich diese Vielfalt durch Musik, Sport und kreative Hobby‑Projekte – so entstehen neue Ideen und Perspektiven, die ich sowohl in der universitären Forschung als auch in meinem Mentoring einbringe.</p>
-</section>
-<section id="contact">
-  <h2>Kontakt</h2>
-  <p>E‑Mail: <a href="mailto:alexander.angerer@outlook.de" style="color:var(--text-color); text-decoration:underline;">alexander.angerer@outlook.de</a></p>
-</section>
-</main>
-<script>
-function toggleTheme() {
-  document.body.classList.toggle('light');
-}
-</script>
+    <section id="education">
+      <h2 class="section-title">Ausbildung</h2>
+      <div class="card">
+        <h3>Technische Universität Wien – M.Sc. Computer Engineering</h3>
+        <p><em>Okt 2024 – voraussichtlich 2026</em></p>
+        <p>Schwerpunkte: Cyber‑Physical Systems, Dependable Distributed Systems, Digital Circuits & Systems【865919582620593†L18-L23】.</p>
+      </div>
+      <div class="card">
+        <h3>Fernuniversität Hagen – Akademiestudium Informatik</h3>
+        <p><em>2023 – 2024</em></p>
+        <p>Aufbaukurse in theoretischer Informatik, Mathematik und Programmiersprachen【865919582620593†L24-L33】.</p>
+      </div>
+      <div class="card">
+        <h3>DHBW Friedrichshafen – B.Eng. Elektrotechnik</h3>
+        <p><em>Okt 2020 – Sep 2023</em></p>
+        <p>Dualstudium mit Schwerpunkt Leistungselektronik; Bachelorarbeit über Gallium‑Nitrit‑Transistoren【865919582620593†L24-L33】.</p>
+      </div>
+      <div class="card">
+        <h3>HTL Bregenz – Abschlussarbeit „Dekantiermaschine“</h3>
+        <p><em>2020</em></p>
+        <p>Entwicklung einer automatisierten Dekantiermaschine mit Fokus auf professionelle Planung, elegantes Design und intuitive Bedienung【327899613325117†L3758-L3773】.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Kenntnisse & Interessen</h2>
+      <div class="card">
+        <h3>Sprachen</h3>
+        <p>Deutsch (Muttersprache), Englisch (C1), Französisch (Grundkenntnisse)</p>
+      </div>
+      <div class="card">
+        <h3>Technische Skills</h3>
+        <p>MS Office & Excel‑VBA, Azure DevOps, C/C++, Python, Embedded‑Systeme, Windows, Linux, macOS【865919582620593†L50-L57】.</p>
+      </div>
+      <div class="card">
+        <h3>Interessen</h3>
+        <p>KI, Mikrocontroller‑Projekte, Kraftsport, Schwimmen, Klavier, Unternehmertum【865919582620593†L50-L57】.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Kontakt</h2>
+      <div class="card">
+        <p>Du hast Fragen oder möchtest mit mir zusammenarbeiten? Schreibe mir gerne eine E‑Mail an <a href="mailto:alexander.angerer@example.com">alexander.angerer@example.com</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Alexander Angerer – Alle Rechte vorbehalten.
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    function setTheme(dark) {
+      if (dark) {
+        body.classList.add('dark');
+        toggle.textContent = 'Light Mode';
+      } else {
+        body.classList.remove('dark');
+        toggle.textContent = 'Dark Mode';
+      }
+    }
+    toggle.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark');
+      setTheme(isDark);
+    });
+  </script>
 </body>
 </html>
